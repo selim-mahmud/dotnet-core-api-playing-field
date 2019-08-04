@@ -6,15 +6,24 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DatingApp.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [ApiVersion("1")]
+    [ApiVersion("2")]
+    [Route("[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        // GET api/values
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        // GET api/v1/values
+        [HttpGet(), MapToApiVersion("1")]
+        public ActionResult<IEnumerable<string>> GetV1()
         {
             return new string[] { "value1", "value2" };
+        }
+
+        // GET api/v2/values
+        [HttpGet(), MapToApiVersion("2")]
+        public ActionResult<IEnumerable<string>> GetV2()
+        {
+            return new string[] { "value3", "value4" };
         }
 
         // GET api/values/5
