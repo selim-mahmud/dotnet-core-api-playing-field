@@ -1,3 +1,7 @@
+**/appsettings.development.json
+**/appsettings.staging.json
+**/appsettings.production.json
+
 #Visual Studio
 .vs
 # MSTest test Results
