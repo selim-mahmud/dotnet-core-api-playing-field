@@ -1,4 +1,5 @@
-﻿using DatingApp.Domain.Contracts.Users;
+﻿using DatingApp.Api;
+using DatingApp.Domain.Contracts.Users;
 using DatingApp.Domain.Models.Entities;
 using System;
 using System.Collections.Generic;
