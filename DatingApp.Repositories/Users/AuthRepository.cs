@@ -10,11 +10,11 @@ namespace DatingApp.Repositories.Users
 {
     public class AuthRepository : IAuthRepository
     {
-        private readonly AppDbContext _appDbContext;
+        private readonly AppDbContext _context;
 
-        public AuthRepository(AppDbContext appDbContext)
+        public AuthRepository(AppDbContext context)
         {
-            _appDbContext = appDbContext;
+            _context = context;
         }
 
         public Task<User> Login(string username, string password)
