@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DatingApp.Entities
+namespace DatingApp.Api
 {
     public class AppDbContext: DbContext
     {

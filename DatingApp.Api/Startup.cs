@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DatingApp.Api.Extensions;
+using DatingApp.Domain.Models;
 using DatingApp.Domain.Models.Configurations;
-using DatingApp.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +30,10 @@ namespace DatingApp.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<AppSetting>(Configuration.GetSection("ApplicationSettings"));
+            var appSetting = Configuration.GetSection("ApplicationSettings").Get<AppSetting>();
+
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(appSetting.ConnectionStrings.Default));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddMvc(o => { o.UseGeneralRoutePrefix("api/v{version:apiVersion}"); });

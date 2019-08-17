@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DatingApp.Entities\DatingApp.Entities.csproj" />
+    <ProjectReference Include="..\DatingApp.Domain\DatingApp.Domain.csproj" />
     <ProjectReference Include="..\DatingApp.Repositories\DatingApp.Repositories.csproj" />
   </ItemGroup>
 
