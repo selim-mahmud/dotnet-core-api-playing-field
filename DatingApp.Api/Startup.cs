@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DatingApp.Api.Extensions;
+using DatingApp.Database;
+using DatingApp.Domain.Contracts.Users;
 using DatingApp.Domain.Models;
 using DatingApp.Domain.Models.Configurations;
 using Microsoft.AspNetCore.Builder;
@@ -32,8 +34,7 @@ namespace DatingApp.Api
             services.Configure<AppSetting>(Configuration.GetSection("ApplicationSettings"));
             var appSetting = Configuration.GetSection("ApplicationSettings").Get<AppSetting>();
 
-            services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(appSetting.ConnectionStrings.Default));
+            services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(appSetting.ConnectionStrings.Default));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddMvc(o => { o.UseGeneralRoutePrefix("api/v{version:apiVersion}"); });
@@ -47,6 +48,7 @@ namespace DatingApp.Api
                         .AllowAnyHeader()
                         .AllowCredentials());
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,6 +67,11 @@ namespace DatingApp.Api
             //app.UseHttpsRedirection();
             app.UseCors("DefaultCorsPolicy");
             app.UseMvc();
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                serviceScope.ServiceProvider.GetService<DatabaseContext>().Database.Migrate();
+
+            }
         }
     }
 }

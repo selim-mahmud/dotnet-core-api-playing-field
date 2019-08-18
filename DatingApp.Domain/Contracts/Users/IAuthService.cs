@@ -6,21 +6,23 @@ using DatingApp.Domain.Models.Entities;
 
 namespace DatingApp.Domain.Contracts.Users
 {
-    public interface IAuthRepository
+    public interface IAuthService
     {
         /// <summary>
         /// register a user
         /// </summary>
         /// <param name="user"></param>
+        /// <param name="password"></param>
         /// <returns></returns>
-        Task<User> Register(User user);
+        Task<User> Register(User user, string password);
 
         /// <summary>
-        /// get user by username
+        /// login a user
         /// </summary>
         /// <param name="username"></param>
+        /// <param name="password"></param>
         /// <returns></returns>
-        Task<User> FindUserByUsername(string username);
+        Task<User> Login(string username, string password);
 
         /// <summary>
         /// check if a user exists

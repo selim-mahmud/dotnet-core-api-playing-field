@@ -1,6 +1,8 @@
-﻿using DatingApp.Api;
+﻿using DatingApp.Database;
+using DatingApp.Database.Entities.Users;
 using DatingApp.Domain.Contracts.Users;
 using DatingApp.Domain.Models.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,26 +12,46 @@ namespace DatingApp.Repositories.Users
 {
     public class AuthRepository : IAuthRepository
     {
-        private readonly AppDbContext _context;
+        private readonly DatabaseContext _context;
 
-        public AuthRepository(AppDbContext context)
+        public AuthRepository(DatabaseContext context)
         {
             _context = context;
         }
 
-        public Task<User> Login(string username, string password)
+        public async Task<User> Register(User user)
         {
-            throw new NotImplementedException();
+            var userEntity = new UserEntity()
+            {
+                Username = user.Username,
+                PasswordHash = user.PasswordHash,
+                PasswordSalt = user.PasswordSalt
+            };
+
+            await _context.Users.AddAsync(userEntity);
+            await _context.SaveChangesAsync();
+            return user;
         }
 
-        public Task<User> Register(User user, string password)
+        public async Task<User> FindUserByUsername(string username)
         {
-            throw new NotImplementedException();
+            var userEntity = await _context.Users.FirstOrDefaultAsync(x => x.Username == username);
+            if (userEntity == null)
+                return null;
+
+            return new User()
+            {
+                Id = userEntity.Id,
+                Username = userEntity.Username
+            };
         }
 
-        public Task<bool> UserExists(string username)
+        public async Task<bool> UserExists(string username)
         {
-            throw new NotImplementedException();
+            if (await _context.Users.AnyAsync(x => x.Username == username))
+                return true;
+
+            return false;
         }
     }
 }

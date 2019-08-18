@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DatingApp.Api\DatingApp.Api.csproj" />
+    <ProjectReference Include="..\DatingApp.Database\DatingApp.Database.csproj" />
     <ProjectReference Include="..\DatingApp.Domain\DatingApp.Domain.csproj" />
     <ProjectReference Include="..\DatingApp.Services\DatingApp.Services.csproj" />
   </ItemGroup>
