@@ -1,4 +1,5 @@
 ﻿using DatingApp.Domain.Contracts.Users;
+using DatingApp.Domain.Models.Auth;
 using DatingApp.Domain.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -16,14 +17,20 @@ namespace DatingApp.Services.UserServices
             _authRepository = authRepository;
         }
 
-        public async Task<User> Register(User user, string password)
+        public async Task<User> Register(UserRegisterRequest request)
         {
             byte[] passwordHash, passwordSalt;
-            CreatePasswordHash(password, out passwordHash, out passwordSalt);
-            user.PasswordHash = passwordHash;
-            user.PasswordSalt = passwordSalt;
+            CreatePasswordHash(request.Password, out passwordHash, out passwordSalt);
+
+            var user = new User()
+            {
+                Username = request.Username,
+                PasswordHash = passwordHash,
+                PasswordSalt = passwordSalt
+            };
+
             await _authRepository.Register(user);
-            return user;
+            return await _authRepository.FindUserByUsername(request.Username);
         }
 
         public async Task<User> Login(string username, string password)

@@ -7,6 +7,8 @@ using DatingApp.Database;
 using DatingApp.Domain.Contracts.Users;
 using DatingApp.Domain.Models;
 using DatingApp.Domain.Models.Configurations;
+using DatingApp.Repositories.Users;
+using DatingApp.Services.UserServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -48,6 +50,9 @@ namespace DatingApp.Api
                         .AllowAnyHeader()
                         .AllowCredentials());
             });
+
+            services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IAuthService, AuthService>();
 
         }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using DatingApp.Domain.Models.Auth;
 using DatingApp.Domain.Models.Entities;
 
 namespace DatingApp.Domain.Contracts.Users
@@ -11,10 +12,9 @@ namespace DatingApp.Domain.Contracts.Users
         /// <summary>
         /// register a user
         /// </summary>
-        /// <param name="user"></param>
-        /// <param name="password"></param>
+        /// <param name="request"></param>
         /// <returns></returns>
-        Task<User> Register(User user, string password);
+        Task<User> Register(UserRegisterRequest request);
 
         /// <summary>
         /// login a user
