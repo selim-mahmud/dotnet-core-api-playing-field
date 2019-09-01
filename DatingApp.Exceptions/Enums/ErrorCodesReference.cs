@@ -10,22 +10,24 @@ namespace DA.Digital.CRM.Exceptions.Enums
         #region General
         [ErrorCode("P00002", "An Unexpected error has occured.")]
         GeneralUnexpected,
-        [ErrorCode("P00004", "Access is Denied.")]
+        [ErrorCode("P00003", "Access is Denied.")]
         GeneralAccessDenied,
-        [ErrorCode("P00006", "Terms and Conditions Not Accepted.")]
+        [ErrorCode("P00004", "Terms and Conditions Not Accepted.")]
         GeneralTermsAndConditionsNotAccepted,
-        [ErrorCode("P00008", "This functionality has not been implemented or enabled")]
+        [ErrorCode("P00005", "This functionality has not been implemented or enabled")]
         GeneralNotImplemented,
-        [ErrorCode("P00009", "Request timed out.")]
+        [ErrorCode("P00006", "Request timed out.")]
         GeneralTimeout,
-        [ErrorCode("P00010", "Matching record not found.")]
+        [ErrorCode("P00007", "Matching record not found.")]
         GeneralNotFound,
-        [ErrorCode("P00011", "The system is temporarily unavailable.")]
+        [ErrorCode("P00008", "The system is temporarily unavailable.")]
         GeneralSystemUnavailable,
-        [ErrorCode("P00012", "User is not authorised to perform this action.")]
+        [ErrorCode("P00009", "User is not authorised to perform this action.")]
         GeneralUnauthorised,
-        [ErrorCode("P00013", "Service Error.")]
+        [ErrorCode("P00010", "Service Error.")]
         GeneralServiceError,
+        [ErrorCode("P00011", "Requested model is invalid.")]
+        InvalidModelState,
         #endregion
     }
 }

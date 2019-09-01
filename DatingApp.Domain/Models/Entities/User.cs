@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DatingApp.Domain.Models.Entities
+﻿namespace DatingApp.Domain.Models.Entities
 {
     public class User
     {

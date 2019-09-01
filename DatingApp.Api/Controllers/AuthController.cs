@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using DatingApp.Domain.Contracts.Users;
 using DatingApp.Domain.Models.Auth;
-using DatingApp.Domain.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DatingApp.Api.Controllers

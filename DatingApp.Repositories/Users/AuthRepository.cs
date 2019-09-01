@@ -3,9 +3,6 @@ using DatingApp.Database.Entities.Users;
 using DatingApp.Domain.Contracts.Users;
 using DatingApp.Domain.Models.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DatingApp.Repositories.Users

@@ -11,13 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Injections\" />
-    <Folder Include="Mappers\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\DatingApp.Common\DatingApp.Common.csproj" />
     <ProjectReference Include="..\DatingApp.Database\DatingApp.Database.csproj" />
     <ProjectReference Include="..\DatingApp.Domain\DatingApp.Domain.csproj" />
+    <ProjectReference Include="..\DatingApp.Exceptions\DatingApp.Exceptions.csproj" />
     <ProjectReference Include="..\DatingApp.Repositories\DatingApp.Repositories.csproj" />
   </ItemGroup>
 
