@@ -59,6 +59,10 @@ namespace DatingApp.Api.Middlewares
                 errorCode = ex.ErrorCodes.GetAttribute<ErrorCodeAttribute>().Code;
                 errorMessage = ex.ErrorCodes.GetAttribute<ErrorCodeAttribute>().Message;
                 errorType = ex.Type.ToString();
+                if (!String.IsNullOrEmpty(ex.Message))
+                {
+                    errorMessage = ex.Message;
+                }
                 httpStatusCode = HttpStatusCode.Unauthorized;
             }
             else if (exception is ApiException)
@@ -67,6 +71,10 @@ namespace DatingApp.Api.Middlewares
                 var ex = exception as ApiException;
                 errorCode = ex.ErrorCodes.GetAttribute<ErrorCodeAttribute>().Code;
                 errorMessage = ex.ErrorCodes.GetAttribute<ErrorCodeAttribute>().Message;
+                if (!String.IsNullOrEmpty(ex.Message))
+                {
+                    errorMessage = ex.Message;
+                }
                 errorType = ex.Type.ToString();
                 httpStatusCode = HttpStatusCode.BadRequest;
             }
